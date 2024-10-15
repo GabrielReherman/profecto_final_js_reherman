@@ -1,0 +1,2 @@
+renderEquipo();
+renderBotonCarrito();

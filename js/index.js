@@ -1,0 +1,3 @@
+guardarEquiposLS(equipos);
+renderEquipos();
+renderBotonCarrito();

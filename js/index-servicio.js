@@ -1,0 +1,2 @@
+renderDetalleServicio();
+renderBotonCarrito();
