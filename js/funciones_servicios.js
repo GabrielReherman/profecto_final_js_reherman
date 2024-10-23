@@ -101,6 +101,9 @@ const renderServicio = () => {
     document.getElementById("contenido").innerHTML = contenidoHTML;
 }
 
+const irPaginaPrincipal = () => {
+        location.href = "index.html";
+    }  
 
 const renderCarrito = () => {
     const carrito = cargarCarritoLS();
