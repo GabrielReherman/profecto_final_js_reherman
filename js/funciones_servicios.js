@@ -71,6 +71,18 @@ const agregarServicio = (id) => {
     mostrarMensaje("El servicio se agregó correctamente!");
 }
 
+const totalEquiposCarrito = () => {
+const carrito = cargarCarritoLS();
+
+return carrito.reduce((acum, item) => acum += item.cantidad, 0);
+}
+const sumaTotalEquiposCarrito = () => {
+const carrito = cargarCarritoLS();
+
+return carrito.reduce((acum, item) => acum += item.cantidad * item.precio, 0);
+}
+
+
 const renderServicio = () => {
     const idServicio = cargarIdServicio(); 
     const servicios = cargarServiciosLS();
@@ -88,6 +100,7 @@ const renderServicio = () => {
     
     document.getElementById("contenido").innerHTML = contenidoHTML;
 }
+
 
 const renderCarrito = () => {
     const carrito = cargarCarritoLS();
