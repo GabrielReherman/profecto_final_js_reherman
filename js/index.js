@@ -1,8 +1,6 @@
-guardarEquiposLS(equipos);
+guardarEquiposLS(equipos); 
 renderEquipos();
 renderBotonCarrito();
-
-
-guardarServiciosLS(servicios);
-renderServicios();
-renderBotonCarrito();
+// guardarServiciosLS(servicios);
+// renderServicios();
+// renderBotonCarrito();

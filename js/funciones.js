@@ -39,7 +39,7 @@ const mostrarMensajeConBoton = (texto, funcion) => {
         icon: "success",
         showCancelButton: false,
         confirmButtonColor: "#3085d6",
-        confirmButtonText: "Ir al Home!"
+        confirmButtonText: "Volver a la página de equipos!"
       }).then((result) => {
         funcion();
     });
@@ -66,14 +66,12 @@ const agregarEquipo = (id) => {
         carrito.push(equipo);
     }
     
-
     guardarCarritoLS(carrito);
     renderBotonCarrito();
     mostrarMensaje("El equipo se agrego correctamente!");
 }
 const totalEquiposCarrito = () => {
     const carrito = cargarCarritoLS();
-
     return carrito.reduce((acum, item) => acum += item.cantidad, 0);
 }
 const sumaTotalEquiposCarrito = () => {
@@ -116,6 +114,7 @@ const finalizarCompra = () => {
     }
 
 const renderEquipos = () => {
+    
     const equipos = cargarEquiposLS();
     let contenidoHTML = "";
 
@@ -147,9 +146,9 @@ const renderEquipo = () => {
         <p>$${equipo.precio}</p>
         <p><button class="btn btn-warning" onclick = "agregarEquipo(${equipo.id});">Agregar (+)</button></p>
     </div>`;
-    
+
     document.getElementById("contenido").innerHTML = contenidoHTML;
-    }
+}
     
 
     const renderCarrito = () =>{
