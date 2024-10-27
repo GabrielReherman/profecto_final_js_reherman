@@ -1,6 +1,8 @@
 const guardarServiciosLS = (servicios) => {
     localStorage.setItem("servicios", JSON.stringify(servicios));
 }
+
+
 const cargarServiciosLS =() => {
     return JSON.parse(localStorage.getItem("servicios")) || [];
 }
@@ -15,7 +17,8 @@ const cargarIdServicio = () =>{
 
 
 const guardarCarritoLS =(servicios) => {
-    localStorage.setItem("carrito", JSON.stringify(servicios));
+
+    localStorage.setItem("carrito", JSON.stringify(carrito));
 }
 
 const cargarCarritoLS = () =>{
@@ -140,8 +143,6 @@ let contenidoHTML = `<div class="col-md-4 offset-md-2">
     <img src="${servicios.imagen}" class="img-fluid" alt="${servicios.nombre}" />
     
 </div>
-
-
 
 <div class="col-md-4">
     <h1>${servicios.nombre}</h1>

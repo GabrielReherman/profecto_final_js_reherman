@@ -1,0 +1,28 @@
+{
+    "equipos": [
+        {
+            "id":36,
+            "nombre": "Aire Acondicionado Everest Inverter 12.000 Btu",
+            "precio": 17350,
+            "imagen": "https://d30hlwpy5dvc2w.cloudfront.net/content/images/thumbs/0002129_aire-acondicionado-everest-inverter-12000-btu_600.gif",
+            "descripcion": "Aire Acondicionado Everest Inverter 12.000 Btu",
+            "categoria": "Everest"
+        },
+        {
+            "id":37,
+            "nombre": "Aire Acondicionado Everest Inverter 12.000 Btu",
+            "precio": 17350,
+            "imagen": "https://d30hlwpy5dvc2w.cloudfront.net/content/images/thumbs/0002129_aire-acondicionado-everest-inverter-12000-btu_600.gif",
+            "descripcion": "Aire Acondicionado Everest Inverter 12.000 Btu",
+            "categoria": "Everest"
+        },
+        {
+            "id":38,
+            "nombre": "Aire Acondicionado Everest Inverter 12.000 Btu",
+            "precio": 17350,
+            "imagen": "https://d30hlwpy5dvc2w.cloudfront.net/content/images/thumbs/0002129_aire-acondicionado-everest-inverter-12000-btu_600.gif",
+            "descripcion": "Aire Acondicionado Everest Inverter 12.000 Btu",
+            "categoria": "Everest"
+        }
+    ]
+}

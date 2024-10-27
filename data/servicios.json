@@ -1,0 +1,25 @@
+{
+    "servicios": [
+        {
+            "id": 1,
+            "nombre": "Servicio 1",
+            "precio": 500,
+            "imagen": "img/servicio1.jpg",
+            "descripcion": "Descripción del servicio 1"
+        },
+        {
+            "id": 2,
+            "nombre": "Servicio 2",
+            "precio": 750,
+            "imagen": "img/servicio2.jpg",
+            "descripcion": "Descripción del servicio 2"
+        },
+        {
+            "id": 3,
+            "nombre": "Servicio 3",
+            "precio": 1000,
+            "imagen": "img/servicio3.jpg",
+            "descripcion": "Descripción del servicio 3"
+        }
+    ]
+}

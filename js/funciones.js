@@ -57,18 +57,40 @@ const agregarEquipo = (id) => {
     let equipo;
     
     if (buscarEquipo(id)) {      
-        equipo = carrito.find(item => item.id == id); 
+    const  equipo = carrito.find(item => item.id == id); 
         equipo.cantidad += 1;
-        console.log(equipo);
+        
     } else {
-        equipo = equipos.find(item => item.id == id);
+    const equipo = equipos.find(item => item.id == id);
         equipo.cantidad = 1;
         carrito.push(equipo);
     }
     
     guardarCarritoLS(carrito);
+    if(document.getElementById("contenido")){
+        renderCarrito();
+    }
     renderBotonCarrito();
     mostrarMensaje("El equipo se agrego correctamente!");
+}
+const restarEquipo = (id) => {
+    const carrito = cargarCarritoLS();
+    const equipoIndex = carrito.findIndex(item => item.id == id);
+    if (equipoIndex !== -1) {
+        if (carrito[equipoIndex].cantidad > 1) {
+            // Si hay más de una unidad, reducimos la cantidad
+            carrito[equipoIndex].cantidad -= 1;
+            guardarCarritoLS(carrito);
+            mostrarMensaje("Se redujo la cantidad del equipo");
+        } else {
+            // Si solo hay una unidad, eliminamos el equipo del carrito
+            carrito.splice(equipoIndex, 1);
+            guardarCarritoLS(carrito);
+            mostrarMensaje("Se eliminó el equipo del carrito");
+        }
+        renderCarrito();
+        renderBotonCarrito();
+    }
 }
 const totalEquiposCarrito = () => {
     const carrito = cargarCarritoLS();
@@ -98,11 +120,13 @@ const eliminarEquipoCarrito = (id) => {
     const carrito = cargarCarritoLS();
     const pos = carrito.findIndex(item => item.id == id);
     carrito.splice(pos, 1);
+    
     guardarCarritoLS(carrito);
     renderCarrito();
     renderBotonCarrito();
     //mostrarMensaje("El equipo se eliminó correctamente!");
 }
+
 const irPaginaPrincipal = () => {
         location.href = "index.html";
     }  
@@ -157,27 +181,64 @@ const renderEquipo = () => {
 
         if (carrito.length > 0) {
             contenidoHTML= `<table class="table">
+            <thead>
             <tr>
-            <td colspan="5" class="text-end"><button class="btn btn-warning" onclick="limpiarCarrito();">Limpiar Carrito</button></td>
-            </tr>`;
+            <th colspan="6" class="text-end">
+            <button class="btn btn-warning" onclick="limpiarCarrito();">Limpiar Carrito</button>
+            </th>
+                    </th>
+                </tr>
+                <tr>
+                    <th>Imagen</th>
+                    <th>Producto</th>
+                    <th class="text-center">Cantidad</th>
+                    <th class="text-center">Precio Unit.</th>
+                    <th class="text-center">Subtotal</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>`;
 
-        for (const item of carrito) { 
-            contenidoHTML += `<tr>
-            <td><img src="${item.imagen}" class="img-fluid" alt="${item.nombre}" width="80"></td>
-            <td class ="align-middle">${item.nombre}</td>
-            <td class ="align-middle text-center">$${item.precio * item.cantidad}</td>
-            <td class ="align-middle text-end"><i class="bi bi-trash" onclick="eliminarEquipoCarrito(${item.id});"></i></td>
-            </tr>`;
+            for (const item of carrito) { 
+                contenidoHTML += `<tr>
+                    <td><img src="${item.imagen}" class="img-fluid" alt="${item.nombre}" width="80"></td>
+                    <td class="align-middle">${item.nombre}</td>
+                    <td class="align-middle text-center">
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-sm btn-outline-primary" onclick="restarEquipo(${item.id});">-</button>
+                            <span class="btn btn-sm">${item.cantidad}</span>
+                            <button type="button" class="btn btn-sm btn-outline-primary" onclick="agregarEquipo(${item.id});">+</button>
+                        </div>
+                    </td>
+                    <td class="align-middle text-center">$${item.precio}</td>
+                    <td class="align-middle text-center">$${(item.precio * item.cantidad).toFixed(2)}</td>
+                    <td class="align-middle text-end">
+                        <button class="btn btn-sm btn-black" onclick="eliminarEquipoCarrito(${item.id});">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </td>
+                </tr>`;
         }
-        contenidoHTML += `<tr>
-        <td colspan="3"><b>Total a Pagar</b></td>
-        <td class="text-center"><b>$${sumaTotalEquiposCarrito()}</b></td>
-        <td class="text-end"><button class="btn btn-warning" onclick="finalizarCompra();">Finalizar Compra</button></td>
-        </tr>
+        contenidoHTML += `</tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4" class="text-end"><b>Total a Pagar:</b></td>
+                    <td class="text-center"><b>$${sumaTotalEquiposCarrito().toFixed(2)}</b></td>
+                    <td class="text-end">
+                        <button class="btn btn-warning" onclick="finalizarCompra();">Finalizar Compra</button>
+                    </td>
+                </tr>
+            </tfoot>
         </table>`;
     } else {
-        contenidoHTML = `<div class="alert alert-warning p-5 text-center" role="alert">No se encontraron Equipos en el Carrito!</div>`;
+        contenidoHTML = `
+        <div class="alert alert-warning p-5 text-center" role="alert">
+            <h4>No se encontraron Equipos en el Carrito!</h4>
+            <a href="index.html" class="btn btn-warning mt-3">Volver a la tienda</a>
+        </div>`;
     }
     
     document.getElementById("contenido").innerHTML = contenidoHTML;
 }
+
+
